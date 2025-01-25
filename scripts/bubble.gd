@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	
-	_velocity.x = move_toward(_velocity.x, 0.0, delta * 200.0)
+	_velocity.x = move_toward(_velocity.x, 0.0, delta * 300.0)
 	_velocity.y -= delta * 15.0
 	global_position += _velocity * delta
 	

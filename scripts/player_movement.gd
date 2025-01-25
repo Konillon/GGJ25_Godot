@@ -6,10 +6,12 @@ const JUMP_VELOCITY = -400.0
 
 
 var _stats : PlayerStats
+var _input : PlayerInput
 
 
 func _ready() -> void:
 	_stats = find_child("Stats")
+	_input = find_child("Input")
 
 
 func leave_tree():
@@ -26,12 +28,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if _input.jump and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right")
+	var direction := _input.horizontal_input
 	if direction:
 		velocity.x = direction * _get_horizontal_velocity()
 		_stats.facing_right = direction > 0.0
