@@ -2,13 +2,13 @@ extends Node2D
 class_name PlayerGun
 
 var _stats : PlayerStats
-var _offset : Vector2
 var _timer : float = 0.0
 
 
-var action : String
-var bullet : PackedScene
-var cooldown : float = 1.0
+@export var offset : Vector2
+@export var action : String # TODO: sai fora
+@export var bullet : PackedScene
+@export var cooldown : float = 1.0 # TODO: sai fora
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,7 +16,7 @@ func _ready() -> void:
 	_stats = get_parent().find_child("Stats")
 
 
-func setup_bullet(new_bullet : Node2D) -> void:
+func _setup_bullet(new_bullet : Node2D) -> void:
 	pass
 
 
@@ -27,8 +27,8 @@ func _process(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed(action):
-		var new_bulled := bullet.instantiate()
-		new_bulled.position = position + (_offset if _stats.facing_right else -_offset)
-		setup_bullet(new_bulled)
-		get_tree().current_scene.add_child(new_bulled)
+		var new_bullet := bullet.instantiate()
+		new_bullet.global_position = global_position + (offset if _stats.facing_right else -offset)
+		_setup_bullet(new_bullet)
+		get_tree().current_scene.add_child(new_bullet)
 		_timer = cooldown
