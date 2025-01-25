@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmm8xtc73ofyj"]
+
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_0pder"]
+[ext_resource type="Texture2D" uid="uid://78wgsiu0m5de" path="res://sprites/player.png" id="2_0s6b5"]
+[ext_resource type="Script" path="res://scripts/player_stats.gd" id="3_207jx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oaq54"]
+radius = 30.0
+height = 80.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_0pder")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.446, 2.446)
+texture = ExtResource("2_0s6b5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_oaq54")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("3_207jx")
+
+[node name="BubbleGun" type="Node2D" parent="."]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu6cunuopjs0"]
+
+[ext_resource type="Texture2D" uid="uid://dpw3jwsj4m5yp" path="res://icon.svg" id="1_b6pot"]
+[ext_resource type="PackedScene" uid="uid://dmm8xtc73ofyj" path="res://entities/player.tscn" id="1_hn8qa"]
+[ext_resource type="Script" path="res://scripts/camera_follow.gd" id="3_bqx1x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr6ng"]
+size = Vector2(350, 30)
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_hn8qa")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_bqx1x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-7, 75)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(7.62939e-06, 0)
+scale = Vector2(2.734, 0.234)
+texture = ExtResource("1_b6pot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_tr6ng")
