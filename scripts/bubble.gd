@@ -24,8 +24,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	
-	_velocity.x = move_toward(_velocity.x, 0.0, delta * 100.0)
-	_velocity.y -= delta * 20.0
+	_velocity.x = move_toward(_velocity.x, 0.0, delta * 200.0)
+	_velocity.y -= delta * 15.0
 	global_position += _velocity * delta
 	
 	if _player:
@@ -34,10 +34,19 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if _player or abs(_velocity.x) < 0.2:
-		return
+	if abs(_velocity.x) < 0.2:
+		if body.global_position.y > global_position.y:
+			queue_free()
+		else: # jump
+			var p := body as PlayerMovement
+			if p:
+				p.velocity.y = -300 # TODO: ajustar pulo
+			queue_free()
+	elif not _player:
+		if _velocity.dot(body.global_position - global_position) < 0.0:
+			return
 		
-	var stats := body.find_child("Stats")
-	if stats and stats is PlayerStats:
-		_player = stats as PlayerStats
-		_player.is_in_bubble = true
+		var stats := body.find_child("Stats")
+		if stats and stats is PlayerStats:
+			_player = stats as PlayerStats
+			_player.is_in_bubble = true

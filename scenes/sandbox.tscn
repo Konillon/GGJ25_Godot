@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1x2yy6av4aih" path="res://entities/bubble.tscn" id="4_u5sev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tr6ng"]
-size = Vector2(350, 30)
+size = Vector2(500, 30)
 
 [node name="Sandbox" type="Node2D"]
 
@@ -20,7 +20,7 @@ position = Vector2(-7, 199.215)
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(7.62939e-06, 0)
-scale = Vector2(2.734, 0.234)
+scale = Vector2(3.906, 0.234)
 texture = ExtResource("1_b6pot")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
