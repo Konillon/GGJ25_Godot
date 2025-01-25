@@ -21,7 +21,7 @@ func _exit_tree() -> void:
 func _physics_process(delta: float) -> void:
 	_timer -= delta
 	if _timer <= 0.0:
-		queue_free()
+		destroy_bubble()
 		return
 	
 	_velocity.x = move_toward(_velocity.x, 0.0, delta * 100.0)
@@ -41,3 +41,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if stats and stats is PlayerStats:
 		_player = stats as PlayerStats
 		_player.is_in_bubble = true
+		
+func destroy_bubble() -> void:
+	queue_free()
