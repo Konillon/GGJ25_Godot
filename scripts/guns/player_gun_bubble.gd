@@ -1,7 +1,7 @@
 extends PlayerGun
 
 
-const LAUNCH_FORCE := 250.0
+const LAUNCH_FORCE := 200.0
 
 
 # Called when the node enters the scene tree for the first time.
