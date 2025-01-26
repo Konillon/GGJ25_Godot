@@ -10,10 +10,6 @@ var _timer : float
 var _objects : Array[NodePath]
 
 
-func _ready() -> void:
-	pass
-
-
 func count() -> int:
 	var i : int = 0
 	while i < _objects.size():
