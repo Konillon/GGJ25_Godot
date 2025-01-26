@@ -651,6 +651,9 @@ position = Vector2(-52, 134)
 [node name="Input" parent="CharacterBody2D2" index="4"]
 id = 1
 
+[node name="Sprite2D" parent="CharacterBody2D2" index="7"]
+region_rect = Rect2(9, 0, 9, 13)
+
 [node name="CharacterBody2D3" parent="." instance=ExtResource("11_mo5k7")]
 position = Vector2(162, 135)
 
@@ -664,6 +667,9 @@ frame_progress = 0.394244
 [node name="Input" parent="CharacterBody2D3" index="4"]
 id = 2
 
+[node name="Sprite2D" parent="CharacterBody2D3" index="7"]
+region_rect = Rect2(18, 0, 9, 13)
+
 [node name="CharacterBody2D4" parent="." instance=ExtResource("11_mo5k7")]
 position = Vector2(108, 132)
 
@@ -672,6 +678,9 @@ team = 1
 
 [node name="Input" parent="CharacterBody2D4" index="4"]
 id = 3
+
+[node name="Sprite2D" parent="CharacterBody2D4" index="7"]
+region_rect = Rect2(27, 0, 9, 13)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_6e26b")
