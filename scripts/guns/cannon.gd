@@ -18,3 +18,7 @@ func activate() -> void:
 	new_bubble.team = team
 	new_bubble.velocity = launch_velocity
 	get_tree().current_scene.add_child(new_bubble)
+
+
+func _on_button_on_pressed() -> void:
+	activate()

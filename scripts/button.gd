@@ -16,6 +16,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	var stats : PlayerStats = body.find_child("Stats")	
+	var stats : PlayerStats = body.find_child("Stats")
 	if stats and stats.team == team:
 		on_pressed.emit()
