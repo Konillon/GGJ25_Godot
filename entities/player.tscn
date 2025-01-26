@@ -1,124 +1,24 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmm8xtc73ofyj"]
+[gd_scene load_steps=18 format=3 uid="uid://dmm8xtc73ofyj"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_0pder"]
 [ext_resource type="Script" path="res://scripts/player_stats.gd" id="3_207jx"]
 [ext_resource type="Script" path="res://scripts/guns/player_gun_bubble.gd" id="4_tw20x"]
-[ext_resource type="Texture2D" uid="uid://c324hnaovi1sw" path="res://sprites/baby_00.png" id="5_mpynr"]
+[ext_resource type="SpriteFrames" uid="uid://bftu7fodth7va" path="res://entities/animations/baby_00.tres" id="5_hm64f"]
 [ext_resource type="PackedScene" uid="uid://b1x2yy6av4aih" path="res://entities/bubble.tscn" id="5_vwkog"]
 [ext_resource type="Script" path="res://scripts/sprite_flip.gd" id="6_50mtj"]
 [ext_resource type="Script" path="res://scripts/player_input.gd" id="6_n0hsq"]
+[ext_resource type="SpriteFrames" uid="uid://bhvaqnxelfx1w" path="res://entities/animations/baby_01.tres" id="7_2e4g8"]
 [ext_resource type="Script" path="res://scripts/guns/player_gun_shuriken.gd" id="7_jyc7h"]
 [ext_resource type="PackedScene" uid="uid://bot484ykv8ra8" path="res://entities/shuriken.tscn" id="8_awshp"]
+[ext_resource type="SpriteFrames" uid="uid://7yiwv0fcjoe6" path="res://entities/animations/baby_02.tres" id="8_y0knj"]
+[ext_resource type="SpriteFrames" uid="uid://6bru0sumwe8u" path="res://entities/animations/baby_03.tres" id="9_gtnhq"]
+[ext_resource type="SpriteFrames" uid="uid://crp543h407jbg" path="res://entities/animations/baby_04.tres" id="10_3bhkt"]
 [ext_resource type="Script" path="res://scripts/soap_collector.gd" id="10_8ngol"]
+[ext_resource type="SpriteFrames" uid="uid://dbisf2njqtbct" path="res://entities/animations/baby_05.tres" id="11_30l7m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oaq54"]
 radius = 7.0
 height = 28.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5h2hu"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(0, 116, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i2s2f"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(16, 116, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ojss6"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(0, 29, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6dre"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(16, 29, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qkdf0"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(32, 29, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5sgpx"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(0, 87, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0nmt"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(0, 58, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tos1"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(0, 0, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4crvm"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(16, 0, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xax8b"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(32, 0, 16, 29)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mewoo"]
-atlas = ExtResource("5_mpynr")
-region = Rect2(48, 0, 16, 29)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jeca5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5h2hu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i2s2f")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ojss6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q6dre")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qkdf0")
-}],
-"loop": true,
-"name": &"inside_bubble",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5sgpx")
-}],
-"loop": true,
-"name": &"jump",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u0nmt")
-}],
-"loop": true,
-"name": &"stun",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2tos1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4crvm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xax8b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mewoo")
-}],
-"loop": true,
-"name": &"walking",
-"speed": 10.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrhtr"]
 radius = 6.0
@@ -143,9 +43,10 @@ bullet = ExtResource("5_vwkog")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14.5)
-sprite_frames = SubResource("SpriteFrames_jeca5")
-animation = &"inside_bubble"
+sprite_frames = ExtResource("5_hm64f")
+animation = &"stun"
 script = ExtResource("6_50mtj")
+animations = Array[SpriteFrames]([ExtResource("5_hm64f"), ExtResource("7_2e4g8"), ExtResource("8_y0knj"), ExtResource("9_gtnhq"), ExtResource("10_3bhkt"), ExtResource("11_30l7m")])
 
 [node name="Input" type="Node" parent="."]
 script = ExtResource("6_n0hsq")

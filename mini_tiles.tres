@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://w73srp740ydj"]
+
+[ext_resource type="Texture2D" uid="uid://ce7trpgs3ve2j" path="res://sprites/grama.png" id="1_bvva4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ms1v"]
+texture = ExtResource("1_bvva4")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+
+[resource]
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "terra"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_8ms1v")
