@@ -1,0 +1,829 @@
+[gd_scene load_steps=31 format=4 uid="uid://52qaihphyyjh"]
+
+[ext_resource type="TileSet" uid="uid://bg4imhqttpbp8" path="res://tiles.tres" id="1_6l6wc"]
+[ext_resource type="Texture2D" uid="uid://8qfr7rfn1x7i" path="res://sprites/castle.png" id="2_4mm5j"]
+[ext_resource type="Texture2D" uid="uid://b1lc21j717ssn" path="res://sprites/window_small.png" id="3_n4xu3"]
+[ext_resource type="Texture2D" uid="uid://858aa7gnye05" path="res://sprites/window_big.png" id="4_elr0k"]
+[ext_resource type="PackedScene" uid="uid://dx18sealm2pwy" path="res://entities/button.tscn" id="5_6w3gu"]
+[ext_resource type="PackedScene" uid="uid://beiwt1kylcpv" path="res://entities/cannon_weak.tscn" id="6_pqeta"]
+[ext_resource type="PackedScene" uid="uid://c11f38h14awp6" path="res://entities/mega_bubble_strong.tscn" id="7_paa8l"]
+[ext_resource type="Texture2D" uid="uid://cfrsw1atngyg" path="res://sprites/castle_platform_mask.png" id="8_4vsxn"]
+[ext_resource type="Script" path="res://scripts/loss_detector.gd" id="9_d4101"]
+[ext_resource type="Texture2D" uid="uid://bg613lyblkx2o" path="res://sprites/botao_azul.png" id="10_y8eeg"]
+[ext_resource type="PackedScene" uid="uid://dmm8xtc73ofyj" path="res://entities/player.tscn" id="11_mo5k7"]
+[ext_resource type="AudioStream" uid="uid://tscof6otxisl" path="res://music/main_theme.mp3" id="12_6e26b"]
+[ext_resource type="FontFile" uid="uid://c8smb5las07pj" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="15_pkqtl"]
+[ext_resource type="FontFile" uid="uid://babsuccecl36i" path="res://fonts/Jersey15-Regular.ttf" id="15_wemi5"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="16_g23aq"]
+[ext_resource type="Script" path="res://scripts/victory_text.gd" id="17_dchdn"]
+[ext_resource type="Script" path="res://scripts/menuShadow.gd" id="17_se7mn"]
+[ext_resource type="PackedScene" path="res://entities/mega_bubble_weak.tscn" id="18_vr8ki"]
+[ext_resource type="PackedScene" uid="uid://b1x2yy6av4aih" path="res://entities/bubble.tscn" id="19_tex2a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb3s8"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1py8"]
+size = Vector2(128, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_id4ox"]
+size = Vector2(114, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u82of"]
+size = Vector2(14, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hty88"]
+size = Vector2(14, 196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwn4a"]
+size = Vector2(114.02, 226)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kw2x0"]
+font = ExtResource("15_pkqtl")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ultw"]
+font = ExtResource("15_pkqtl")
+font_size = 40
+font_color = Color(0, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mx8fd"]
+font = ExtResource("15_pkqtl")
+font_size = 31
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xb2p8"]
+line_spacing = 8.0
+font = ExtResource("15_wemi5")
+font_size = 75
+font_color = Color(1, 1, 0, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 50
+shadow_color = Color(0.87, 0.1305, 0.1305, 0.521569)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ig5w"]
+font = ExtResource("15_wemi5")
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.513726)
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="Sprite2D" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD6/wQAAQAAAAIAAAD5/wQAAQAAAAIAAAD4/wQAAQAAAAIAAAD3/wQAAQAAAAIAAAD2/wQAAQAAAAIAAAD7/wQAAQAAAAIAAAD8/wQAAQAAAAIAAAD9/wQAAQAAAAIAAAD+/wQAAQAAAAIAAAD//wQAAQAAAAIAAAAAAAQAAQAAAAIAAAABAAQAAQAAAAIAAAACAAQAAQAAAAIAAAADAAQAAQAAAAIAAAAEAAQAAQAAAAIAAAAFAAQAAQAAAAIAAAAGAAQAAQAAAAIAAAAHAAQAAQAAAAIAAAAIAAQAAQAAAAIAAAAJAAQAAQAAAAIAAAAKAAQAAQAAAAIAAAALAAQAAQAAAAIAAAAMAAQAAQAAAAIAAAANAAQAAQAAAAIAAAD7/wMAAQAAAAIAAAD6/wMAAQAAAAIAAAD5/wMAAQAAAAIAAAD4/wMAAQADAAAAAAD3/wMAAQACAAAAAAD8/wMAAQAAAAIAAAD9/wMAAQAAAAIAAAD+/wMAAQAAAAIAAAD//wMAAQAAAAIAAAD2/wMAAQABAAAAAAD1/wMAAQADAAAAAAAAAAMAAQAAAAIAAAABAAMAAQAAAAIAAAACAAMAAQAAAAIAAAADAAMAAQAAAAIAAAAEAAMAAQAAAAIAAAAFAAMAAQAAAAIAAAAGAAMAAQAAAAIAAAAHAAMAAQAAAAIAAAAIAAMAAQAAAAIAAAAJAAMAAQAAAAIAAAAKAAMAAQAAAAIAAAALAAMAAQAAAAIAAAAMAAMAAQAAAAIAAAANAAMAAQAAAAIAAAAOAAMAAQAAAAIAAAD1/wIAAQADAAAAAAD2/wIAAQABAAAAAAD3/wIAAQACAAAAAAD4/wIAAQADAAAAAAD5/wIAAQAAAAIAAAD6/wIAAQAAAAIAAAD7/wIAAQAAAAIAAAD8/wIAAQAAAAIAAAD9/wIAAQAAAAIAAAD+/wIAAQAAAAIAAAD//wIAAQAAAAIAAAAAAAIAAQAAAAIAAAABAAIAAQAAAAIAAAACAAIAAQAAAAIAAAADAAIAAQAAAAIAAAAEAAIAAQAAAAIAAAAFAAIAAQAAAAIAAAAGAAIAAQAAAAIAAAAHAAIAAQAAAAIAAAAIAAIAAQAAAAIAAAAJAAIAAQAAAAIAAAAKAAIAAQAAAAIAAAALAAIAAQAAAAIAAAAMAAIAAQAAAAIAAAANAAIAAQAAAAIAAAAOAAIAAQAAAAIAAAD1/wEAAQADAAAAAAD2/wEAAQABAAAAAAD3/wEAAQACAAAAAAD4/wEAAQADAAAAAAD5/wEAAQAAAAEAAAD6/wEAAQABAAEAAAD7/wEAAQACAAEAAAD8/wEAAQADAAEAAAD9/wEAAQAAAAEAAAD+/wEAAQABAAEAAAD//wEAAQACAAEAAAAAAAEAAQADAAEAAAABAAEAAQAAAAEAAAACAAEAAQABAAEAAAADAAEAAQACAAEAAAAEAAEAAQADAAEAAAAFAAEAAQAAAAEAAAAGAAEAAQABAAEAAAAHAAEAAQACAAEAAAAIAAEAAQADAAEAAAAJAAEAAQAAAAEAAAAKAAEAAQABAAEAAAALAAEAAQACAAEAAAAMAAEAAQADAAEAAAANAAEAAQAAAAEAAAAOAAEAAQABAAEAAAAPAAEAAQACAAEAAAAQAAEAAQADAAEAAAD0/wAAAQADAAAAAAD1/wAAAQAAAAAAAAD2/wAAAQABAAAAAAD3/wAAAQACAAAAAAD4/wAAAQADAAAAAAD5/wAAAQABAAAAAAD6/wAAAQACAAAAAAD7/wAAAQADAAAAAAD8/wAAAQAAAAAAAAD9/wAAAQABAAAAAAD+/wAAAQACAAAAAAD//wAAAQADAAAAAAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQACAAAAAAADAAAAAQADAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQABAAAAAAAGAAAAAQACAAAAAAAHAAAAAQADAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQABAAAAAAAKAAAAAQACAAAAAAALAAAAAQADAAAAAAAMAAAAAQAAAAAAAAANAAAAAQABAAAAAAAOAAAAAQACAAAAAAAPAAAAAQADAAAAAAAMAP//AQAAAAAAAAANAP//AQABAAAAAAAOAP//AQACAAAAAAAPAP//AQADAAAAAAAIAP//AQAAAAAAAAAJAP//AQABAAAAAAAKAP//AQACAAAAAAALAP//AQADAAAAAAAEAP//AQAAAAAAAAAFAP//AQABAAAAAAAGAP//AQACAAAAAAAHAP//AQADAAAAAAAAAP//AQAAAAAAAAABAP//AQABAAAAAAACAP//AQACAAAAAAADAP//AQADAAAAAAD8////AQAAAAAAAAD9////AQABAAAAAAD+////AQACAAAAAAD/////AQADAAAAAAD4////AQADAAAAAAD5////AQACAAAAAAD6////AQADAAAAAAD7////AQADAAAAAAD4//7/AQABAAAAAAD5//7/AQACAAAAAAD6//7/AQADAAAAAAD7//7/AQAAAAAAAAD4//3/AQACAAAAAAD5//3/AQADAAAAAAD6//3/AQADAAAAAAD7//3/AQAAAAAAAAD4//z/AQACAAAAAAD5//z/AQADAAAAAAD6//z/AQACAAAAAAD7//z/AQADAAAAAAD4//v/AQACAAAAAAD5//v/AQADAAAAAAD6//v/AQAAAAAAAAD7//v/AQABAAAAAAD4//r/AQACAAAAAAD5//r/AQADAAAAAAD6//r/AQAAAAAAAAD7//r/AQABAAAAAAD8//v/AQACAAAAAAD9//v/AQADAAAAAAD+//v/AQABAAAAAAD///v/AQACAAAAAAD8//z/AQAAAAAAAAD9//z/AQABAAAAAAD+//z/AQACAAAAAAD///z/AQADAAAAAAD8//3/AQAAAAAAAAD9//3/AQABAAAAAAD+//3/AQACAAAAAAD///3/AQADAAAAAAD0//r/AQACAAAAAAD1//r/AQADAAAAAAD2//r/AQAAAAAAAAD3//r/AQABAAAAAADz////AQACAAAAAAD0////AQADAAAAAAD1////AQAAAAAAAAD2////AQABAAAAAAD3////AQACAAAAAAD3//7/AQADAAAAAAD8//7/AQABAAAAAAD9//7/AQACAAAAAAD+//7/AQADAAAAAAD///7/AQAAAAAAAAAAAP7/AQAAAAAAAAABAP7/AQABAAAAAAACAP7/AQAAAAAAAAADAP7/AQABAAAAAAAEAP7/AQACAAAAAAAFAP7/AQAAAAAAAAAGAP7/AQABAAAAAAAHAP7/AQACAAAAAAAIAP7/AQAAAAAAAAAJAP7/AQABAAAAAAAKAP7/AQACAAAAAAALAP7/AQAAAAAAAAAMAP7/AQABAAAAAAANAP7/AQACAAAAAAAOAP7/AQADAAAAAAAHAP3/AQACAAAAAAAIAP3/AQAAAAAAAAAJAP3/AQABAAAAAAAKAP3/AQACAAAAAAADAP3/AQABAAAAAAAEAP3/AQACAAAAAAAFAP3/AQAAAAAAAAAGAP3/AQABAAAAAAAAAP3/AQAAAAAAAAABAP3/AQABAAAAAAACAP3/AQAAAAAAAAD3//3/AQABAAAAAADz//3/AQAAAAAAAAD0//3/AQAAAAAAAAD1//3/AQABAAAAAAD2//3/AQAAAAAAAADz//7/AQACAAAAAAD0//7/AQADAAAAAAD1//7/AQABAAAAAAD2//7/AQACAAAAAAD0//v/AQACAAAAAAD1//v/AQADAAAAAAD2//v/AQAAAAAAAAD3//v/AQABAAAAAAD0//z/AQACAAAAAAD1//z/AQADAAAAAAD2//z/AQAAAAAAAAD3//z/AQABAAAAAADy//r/AQAAAAAAAADz//r/AQABAAAAAADy//v/AQAAAAAAAADz//v/AQABAAAAAADy//z/AQAAAAAAAADz//z/AQABAAAAAAD8//r/AQACAAAAAAD9//r/AQADAAAAAAD+//r/AQABAAAAAAD///r/AQACAAAAAAAAAPr/AQADAAAAAAABAPr/AQABAAAAAAACAPr/AQAAAAAAAAADAPr/AQABAAAAAAAAAPv/AQADAAAAAAABAPv/AQABAAAAAAACAPv/AQAAAAAAAAADAPv/AQABAAAAAAAAAPz/AQAAAAAAAAABAPz/AQABAAAAAAACAPz/AQAAAAAAAAADAPz/AQABAAAAAAAEAPr/AQACAAAAAAAFAPr/AQADAAAAAAAEAPv/AQACAAAAAAAFAPv/AQADAAAAAAAEAPz/AQACAAAAAAAFAPz/AQAAAAAAAAAGAPr/AQABAAAAAAAHAPr/AQACAAAAAAAIAPr/AQADAAAAAAAGAPv/AQABAAAAAAAHAPv/AQACAAAAAAAIAPv/AQADAAAAAAAGAPz/AQABAAAAAAAHAPz/AQACAAAAAAAIAPz/AQADAAAAAAAJAPr/AQAAAAAAAAAKAPr/AQABAAAAAAALAPr/AQAAAAAAAAAJAPv/AQAAAAAAAAAKAPv/AQABAAAAAAALAPv/AQACAAAAAAAJAPz/AQABAAAAAAAKAPz/AQACAAAAAAALAPz/AQAAAAAAAAALAP3/AQAAAAAAAAAMAPr/AQABAAAAAAANAPr/AQACAAAAAAAOAPr/AQADAAAAAAAMAPv/AQADAAAAAAANAPv/AQACAAAAAAAOAPv/AQADAAAAAAAMAPz/AQABAAAAAAANAPz/AQACAAAAAAAOAPz/AQADAAAAAAAMAP3/AQABAAAAAAANAP3/AQACAAAAAAAOAP3/AQADAAAAAAAJAPj/AQACAAAAAAAKAPj/AQADAAAAAAALAPj/AQAAAAAAAAAMAPj/AQABAAAAAAAJAPn/AQAAAAAAAAAKAPn/AQABAAAAAAALAPn/AQAAAAAAAAAMAPn/AQABAAAAAAAFAPn/AQAAAAAAAAAGAPn/AQABAAAAAAAHAPn/AQACAAAAAAAIAPn/AQADAAAAAAACAPj/AQABAAAAAAADAPj/AQAAAAAAAAAEAPj/AQABAAAAAAAFAPj/AQACAAAAAAACAPn/AQABAAAAAAADAPn/AQACAAAAAAAEAPn/AQADAAAAAAD9//j/AQAAAAAAAAD+//j/AQABAAAAAAD///j/AQACAAAAAAAAAPj/AQADAAAAAAD9//n/AQADAAAAAAD+//n/AQABAAAAAAD///n/AQACAAAAAAAAAPn/AQADAAAAAAD6//j/AQABAAAAAAD7//j/AQACAAAAAAD8//j/AQADAAAAAAD6//n/AQAAAAAAAAD7//n/AQABAAAAAAD8//n/AQACAAAAAAD2//n/AQAAAAAAAAD3//n/AQABAAAAAAD4//n/AQACAAAAAAD5//n/AQADAAAAAADy//j/AQAAAAAAAADz//j/AQABAAAAAAD0//j/AQACAAAAAAD1//j/AQAAAAAAAADy//n/AQAAAAAAAADz//n/AQABAAAAAAD0//n/AQACAAAAAAD1//n/AQADAAAAAAD2//j/AQABAAAAAAD3//j/AQACAAAAAAD4//j/AQADAAAAAAD5//j/AQAAAAAAAAABAPj/AQAAAAAAAAABAPn/AQAAAAAAAAAHAPj/AQAAAAAAAAAIAPj/AQABAAAAAAAGAPj/AQADAAAAAAANAPj/AQACAAAAAAAOAPj/AQADAAAAAAANAPn/AQACAAAAAAAOAPn/AQADAAAAAADx//7/AQAAAAAAAADy//7/AQABAAAAAADx////AQAAAAAAAADy////AQABAAAAAADx/wEAAQAAAAAAAADy/wEAAQABAAAAAADz/wEAAQACAAAAAAD0/wEAAQADAAAAAADx/wIAAQAAAAAAAADy/wIAAQAAAAAAAADz/wIAAQABAAAAAAD0/wIAAQACAAAAAADy/wMAAQAAAAAAAADz/wMAAQABAAAAAAD0/wMAAQACAAAAAADy/wQAAQAAAAAAAADz/wQAAQABAAAAAAD0/wQAAQACAAAAAAD1/wQAAQADAAAAAADx/wAAAQAAAAAAAADy/wAAAQABAAAAAADz/wAAAQACAAAAAAA=")
+tile_set = ExtResource("1_6l6wc")
+
+[node name="Castle2" type="Node2D" parent="."]
+position = Vector2(249.82, 8.525)
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2"]
+texture = ExtResource("2_4mm5j")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Castle2"]
+position = Vector2(-48, -78.5)
+texture = ExtResource("3_n4xu3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Castle2"]
+position = Vector2(-47, 5.5)
+texture = ExtResource("4_elr0k")
+
+[node name="ButtonStrong" parent="Castle2" instance=ExtResource("5_6w3gu")]
+position = Vector2(-27, 15)
+team = 1
+
+[node name="CannonStrong" parent="Castle2" instance=ExtResource("6_pqeta")]
+position = Vector2(-64.82, 7.475)
+cost = 5
+team = 1
+bubble = ExtResource("7_paa8l")
+launch_velocity = -10.0
+
+[node name="ButtonWeak" parent="Castle2" instance=ExtResource("5_6w3gu")]
+position = Vector2(-27, -69)
+team = 1
+
+[node name="CannonWeak" parent="Castle2" instance=ExtResource("6_pqeta")]
+position = Vector2(-53.82, -76.525)
+team = 1
+launch_velocity = -30.0
+
+[node name="Doors" type="Node2D" parent="Castle2"]
+
+[node name="Sprite2D4" type="Sprite2D" parent="Castle2/Doors"]
+modulate = Color(0.247059, 0.247059, 0.454902, 1)
+position = Vector2(-50, 93)
+texture = ExtResource("8_4vsxn")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Castle2/Doors"]
+modulate = Color(0.541176, 0.435294, 0.188235, 1)
+position = Vector2(-50, 79)
+texture = ExtResource("8_4vsxn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Castle2/Doors"]
+modulate = Color(0.67451, 0.196078, 0.196078, 1)
+position = Vector2(-50, 65)
+texture = ExtResource("8_4vsxn")
+
+[node name="Platforms" type="Node2D" parent="Castle2"]
+
+[node name="P0" type="Node2D" parent="Castle2/Platforms"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D2"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D3"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D4"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="P1" type="Node2D" parent="Castle2/Platforms"]
+position = Vector2(-30, -42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D2"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D3"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D4"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="P2" type="Node2D" parent="Castle2/Platforms"]
+position = Vector2(0, -84)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D2"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D3"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D4"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="P3" type="Node2D" parent="Castle2/Platforms"]
+position = Vector2(-30, -126)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D2"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D3"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D4"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="Collision" type="StaticBody2D" parent="Castle2"]
+position = Vector2(15, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Collision"]
+position = Vector2(-15, 49.115)
+shape = SubResource("RectangleShape2D_d1py8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Castle2/Collision"]
+position = Vector2(-15, -168)
+shape = SubResource("RectangleShape2D_id4ox")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Castle2/Collision"]
+position = Vector2(-65, -84)
+shape = SubResource("RectangleShape2D_u82of")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Castle2/Collision"]
+position = Vector2(35, -63)
+shape = SubResource("RectangleShape2D_hty88")
+
+[node name="Area2D" type="Area2D" parent="Castle2"]
+script = ExtResource("9_d4101")
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_bwn4a")
+
+[node name="Castle3" type="Node2D" parent="."]
+position = Vector2(-238.18, 8.525)
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3"]
+texture = ExtResource("2_4mm5j")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Castle3"]
+position = Vector2(48, -78.5)
+texture = ExtResource("3_n4xu3")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="Castle3"]
+position = Vector2(47, 5.5)
+texture = ExtResource("4_elr0k")
+flip_h = true
+
+[node name="ButtonStrong" parent="Castle3" instance=ExtResource("5_6w3gu")]
+position = Vector2(27, 15)
+
+[node name="Sprite2D" parent="Castle3/ButtonStrong" index="0"]
+texture = ExtResource("10_y8eeg")
+
+[node name="CannonStrong" parent="Castle3" instance=ExtResource("6_pqeta")]
+position = Vector2(64, 7)
+cost = 5
+bubble = ExtResource("7_paa8l")
+launch_velocity = 10.0
+
+[node name="ButtonWeak" parent="Castle3" instance=ExtResource("5_6w3gu")]
+position = Vector2(27, -69)
+
+[node name="Sprite2D" parent="Castle3/ButtonWeak" index="0"]
+texture = ExtResource("10_y8eeg")
+
+[node name="CannonWeak" parent="Castle3" instance=ExtResource("6_pqeta")]
+position = Vector2(53, -76)
+launch_velocity = 30.0
+
+[node name="Doors" type="Node2D" parent="Castle3"]
+
+[node name="Sprite2D4" type="Sprite2D" parent="Castle3/Doors"]
+modulate = Color(0.247059, 0.247059, 0.454902, 1)
+position = Vector2(50, 93)
+texture = ExtResource("8_4vsxn")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Castle3/Doors"]
+modulate = Color(0.541176, 0.435294, 0.188235, 1)
+position = Vector2(50, 79)
+texture = ExtResource("8_4vsxn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Castle3/Doors"]
+modulate = Color(0.67451, 0.196078, 0.196078, 1)
+position = Vector2(50, 65)
+texture = ExtResource("8_4vsxn")
+
+[node name="Platforms" type="Node2D" parent="Castle3"]
+
+[node name="P0" type="Node2D" parent="Castle3/Platforms"]
+position = Vector2(-30, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle3/Platforms/P0"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P0/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P0/StaticBody2D"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle3/Platforms/P0"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P0/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P0/StaticBody2D2"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle3/Platforms/P0"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P0/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P0/StaticBody2D3"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle3/Platforms/P0"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P0/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P0/StaticBody2D4"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="P1" type="Node2D" parent="Castle3/Platforms"]
+position = Vector2(0, -42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle3/Platforms/P1"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P1/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P1/StaticBody2D"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle3/Platforms/P1"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P1/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P1/StaticBody2D2"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle3/Platforms/P1"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P1/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P1/StaticBody2D3"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle3/Platforms/P1"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P1/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P1/StaticBody2D4"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="P2" type="Node2D" parent="Castle3/Platforms"]
+position = Vector2(-30, -84)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle3/Platforms/P2"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P2/StaticBody2D"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle3/Platforms/P2"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P2/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P2/StaticBody2D2"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle3/Platforms/P2"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P2/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P2/StaticBody2D3"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle3/Platforms/P2"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P2/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P2/StaticBody2D4"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="P3" type="Node2D" parent="Castle3/Platforms"]
+position = Vector2(0, -126)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle3/Platforms/P3"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P3/StaticBody2D"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle3/Platforms/P3"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P3/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P3/StaticBody2D2"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle3/Platforms/P3"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P3/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P3/StaticBody2D3"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle3/Platforms/P3"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Platforms/P3/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle3/Platforms/P3/StaticBody2D4"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("8_4vsxn")
+
+[node name="Collision" type="StaticBody2D" parent="Castle3"]
+position = Vector2(15, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Collision"]
+position = Vector2(-15, 49.115)
+shape = SubResource("RectangleShape2D_d1py8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Castle3/Collision"]
+position = Vector2(-15, -168)
+shape = SubResource("RectangleShape2D_id4ox")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Castle3/Collision"]
+position = Vector2(35, -84)
+shape = SubResource("RectangleShape2D_u82of")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Castle3/Collision"]
+position = Vector2(-65, -63)
+shape = SubResource("RectangleShape2D_hty88")
+
+[node name="Area2D" type="Area2D" parent="Castle3"]
+script = ExtResource("9_d4101")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle3/Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_bwn4a")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 7.87)
+tile_map_data = PackedByteArray("AAD3/wQAAAAAAAAAAAD4/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAD2/wQAAAAAAAAAAAD1/wQAAAAAAAAAAAD0/wQAAAAAAAAAAADz/wQAAAAAAAAAAADy/wQAAAAAAAAAAADx/wQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAAAAAAAAAAAAAAPAP//AAAAAAAAAAAPAP7/AAAAAAAAAAAPAP3/AAAAAAAAAAAPAPz/AAAAAAAAAAAPAPv/AAAAAAAAAAAPAPr/AAAAAAAAAADx/wMAAAAAAAAAAADx/wIAAAAAAAAAAADx/wEAAAAAAAAAAADx/wAAAAAAAAAAAADx////AAAAAAAAAADx//7/AAAAAAAAAADx//3/AAAAAAAAAADx//z/AAAAAAAAAADx//v/AAAAAAAAAADx//r/AAAAAAAAAAA=")
+tile_set = ExtResource("1_6l6wc")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("11_mo5k7")]
+position = Vector2(-100, 135)
+
+[node name="AnimatedSprite2D" parent="CharacterBody2D" index="3"]
+animation = &"idle"
+
+[node name="Input" parent="CharacterBody2D" index="4"]
+joy = false
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("11_mo5k7")]
+position = Vector2(-52, 134)
+
+[node name="Input" parent="CharacterBody2D2" index="4"]
+joy = false
+id = 1
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("11_mo5k7")]
+position = Vector2(162, 135)
+
+[node name="Stats" parent="CharacterBody2D3" index="1"]
+team = 1
+
+[node name="AnimatedSprite2D" parent="CharacterBody2D3" index="3"]
+animation = &"idle"
+frame_progress = 0.394244
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("11_mo5k7")]
+position = Vector2(108, 132)
+
+[node name="Stats" parent="CharacterBody2D4" index="1"]
+team = 1
+
+[node name="Input" parent="CharacterBody2D4" index="4"]
+id = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_6e26b")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreTeam0" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = 112.0
+offset_right = -188.0
+offset_bottom = 162.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_kw2x0")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_g23aq")
+
+[node name="ScoreTeam1" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 188.0
+offset_top = 112.0
+offset_right = 288.0
+offset_bottom = 162.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_kw2x0")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_g23aq")
+team = 1
+
+[node name="Victory0" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TIME AZUL VENCEU!!"
+label_settings = SubResource("LabelSettings_2ultw")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_dchdn")
+
+[node name="Victory1" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TIME VERMELHO VENCEU!!"
+label_settings = SubResource("LabelSettings_mx8fd")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_dchdn")
+team = 1
+
+[node name="BBB Title" type="Label" parent="."]
+offset_left = -146.0
+offset_top = -156.0
+offset_right = 150.0
+offset_bottom = 88.0
+text = "Baby 
+Bubble
+Battle"
+label_settings = SubResource("LabelSettings_xb2p8")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_se7mn")
+_color = Color(0.870588, 0.129412, 0.129412, 0.521569)
+_rate = 1.0
+
+[node name="Press" type="Label" parent="."]
+offset_left = -150.0
+offset_top = -23.0
+offset_right = 146.0
+offset_bottom = 221.0
+text = "Start"
+label_settings = SubResource("LabelSettings_5ig5w")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_se7mn")
+_color = Color(0.870588, 0.129412, 0.129412, 0.521569)
+_rate = 0.1
+
+[node name="MegaBubbleStrong" parent="." instance=ExtResource("7_paa8l")]
+position = Vector2(-157, -94)
+
+[node name="MegaBubbleWeak" parent="." instance=ExtResource("18_vr8ki")]
+position = Vector2(151, -43)
+
+[node name="Bubble" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(-209, 89)
+
+[node name="Bubble2" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(-125, 71)
+
+[node name="Bubble3" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(-208, 17)
+
+[node name="Bubble4" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(123, 33)
+
+[node name="Bubble5" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(191, 70)
+
+[node name="Bubble6" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(80, -78)
+
+[node name="Bubble7" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(-8, 114)
+
+[node name="Bubble8" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(-136, 119)
+
+[node name="Bubble9" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(255, -29)
+
+[node name="Bubble10" parent="." instance=ExtResource("19_tex2a")]
+position = Vector2(261, 95)
+
+[connection signal="on_pressed" from="Castle2/ButtonStrong" to="Castle2/CannonStrong" method="activate"]
+[connection signal="on_pressed" from="Castle2/ButtonWeak" to="Castle2/CannonWeak" method="activate"]
+[connection signal="area_entered" from="Castle2/Area2D" to="Castle2/Area2D" method="_on_area_entered"]
+[connection signal="on_pressed" from="Castle3/ButtonStrong" to="Castle3/CannonStrong" method="activate"]
+[connection signal="on_pressed" from="Castle3/ButtonWeak" to="Castle3/CannonWeak" method="activate"]
+[connection signal="area_entered" from="Castle3/Area2D" to="Castle3/Area2D" method="_on_area_entered"]
+
+[editable path="Castle3/ButtonStrong"]
+[editable path="Castle3/ButtonWeak"]
+[editable path="CharacterBody2D"]
+[editable path="CharacterBody2D2"]
+[editable path="CharacterBody2D3"]
+[editable path="CharacterBody2D4"]
