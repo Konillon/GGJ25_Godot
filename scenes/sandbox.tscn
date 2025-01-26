@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=4 uid="uid://bu6cunuopjs0"]
+[gd_scene load_steps=4 format=4 uid="uid://bu6cunuopjs0"]
 
 [ext_resource type="PackedScene" uid="uid://dmm8xtc73ofyj" path="res://entities/player.tscn" id="1_hn8qa"]
+[ext_resource type="PackedScene" uid="uid://blw4tsbobhdcj" path="res://entities/soap.tscn" id="3_gavs2"]
 [ext_resource type="TileSet" uid="uid://bg4imhqttpbp8" path="res://tiles.tres" id="6_70f06"]
 
 [node name="Sandbox" type="Node2D"]
@@ -38,6 +39,18 @@ position = Vector2(180, 130)
 
 [node name="Input" parent="CharacterBody2D4" index="4"]
 id = 1
+
+[node name="Soap" parent="." instance=ExtResource("3_gavs2")]
+position = Vector2(-216, 52)
+
+[node name="Soap2" parent="." instance=ExtResource("3_gavs2")]
+position = Vector2(-96, 51)
+
+[node name="Soap3" parent="." instance=ExtResource("3_gavs2")]
+position = Vector2(33, 49)
+
+[node name="Soap4" parent="." instance=ExtResource("3_gavs2")]
+position = Vector2(143, 49)
 
 [editable path="CharacterBody2D"]
 [editable path="CharacterBody2D2"]

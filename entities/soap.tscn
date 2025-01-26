@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://blw4tsbobhdcj"]
+
+[ext_resource type="Texture2D" uid="uid://bsvlwynvdbiob" path="res://sprites/sabonete.png" id="1_3svk7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hmf04"]
+size = Vector2(28, 21)
+
+[node name="Soap" type="Area2D" groups=["soap"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 3.5)
+shape = SubResource("RectangleShape2D_hmf04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3svk7")

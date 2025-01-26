@@ -4,8 +4,8 @@ extends Node
 var soap_counts : Array[int]
 
 
-func ready() -> void:
-	reset_scores
+func _ready() -> void:
+	reset_scores()
 	
 
 func reset_scores() -> void:
