@@ -598,7 +598,7 @@ shape = SubResource("RectangleShape2D_bwn4a")
 
 [node name="Platforms" type="TileMapLayer" parent="."]
 position = Vector2(0, 15.74)
-tile_map_data = PackedByteArray("AAD4/wQAAgAAAAAAAAD5/wQAAwAAAAAAAAD6/wQAAwABAAAAAAD7/wQAAwAAAAAAAAD8/wQAAQABAAAAAAADAAIAAgAAAAAAAAAEAAIAAwAAAAAAAAAFAAIAAwABAAAAAAAGAAIAAwAAAAAAAAAHAAIAAwABAAAAAAAIAAIAAQABAAAAAAACAPz/AgAAAAAAAAADAPz/AwAAAAAAAAAEAPz/AwABAAAAAAAFAPz/AwAAAAAAAAAGAPz/AQABAAAAAAD4//r/AgAAAAAAAAD5//r/AwAAAAAAAAD6//r/AwABAAAAAAD7//r/AwABAAAAAAD8//r/AwABAAAAAAD9//r/AQABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD4/wQAAgAAAAAAAAD5/wQAAwAAAAAAAAD6/wQAAwABAAAAAAD7/wQAAwAAAAAAAAD8/wQAAQABAAAAAAD4//r/AgAAAAAAAAD5//r/AwAAAAAAAAD6//r/AwABAAAAAAD7//r/AwABAAAAAAD8//r/AwABAAAAAAD9//r/AQABAAAAAAAHAAQAAQABAAAAAAAGAAQAAwAAAAAAAAAFAAQAAwAAAAAAAAAEAAQAAwAAAAAAAAADAAQAAwAAAAAAAAACAAQAAgAAAAAAAAD//wEAAwAAAAAAAAD+/wEAAgAAAAAAAAAAAAEAAQABAAAAAAACAPr/AgAAAAAAAAADAPr/AwAAAAAAAAAEAPr/AwAAAAAAAAAFAPr/AwAAAAAAAAAGAPr/AwAAAAAAAAAHAPr/AQABAAAAAAAJAP7/AQABAAAAAAAIAP7/AwAAAAAAAAAHAP7/AgAAAAAAAAD2//7/AgAAAAAAAAD3//7/AwAAAAAAAAD4//7/AQABAAAAAAA=")
 tile_set = ExtResource("5_ny5dr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -658,42 +658,54 @@ zoom = Vector2(2, 2)
 
 [node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("points")]
 script = ExtResource("11_ev66p")
-points = [NodePath("Point"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5"), NodePath("Point6"), NodePath("Point7"), NodePath("Point8"), NodePath("Point9"), NodePath("Point10"), NodePath("Point11")]
-spawn_time = 8.0
+points = [NodePath("Point"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5"), NodePath("Point6"), NodePath("Point7"), NodePath("Point8"), NodePath("Point9"), NodePath("Point10"), NodePath("Point11"), NodePath("Point12"), NodePath("Point13"), NodePath("Point14"), NodePath("Point15")]
+spawn_time = 3.0
 soap = ExtResource("5_jrek0")
 
 [node name="Point" type="Node2D" parent="Spawner"]
-position = Vector2(2, 10)
+position = Vector2(-5, 21)
 
 [node name="Point2" type="Node2D" parent="Spawner"]
-position = Vector2(121, 30)
+position = Vector2(83, -37)
 
 [node name="Point3" type="Node2D" parent="Spawner"]
-position = Vector2(64, 32)
+position = Vector2(80, 69)
 
 [node name="Point4" type="Node2D" parent="Spawner"]
-position = Vector2(-65, 65)
+position = Vector2(-91, 70)
 
 [node name="Point5" type="Node2D" parent="Spawner"]
-position = Vector2(-116, 65)
+position = Vector2(-84, -46)
 
 [node name="Point6" type="Node2D" parent="Spawner"]
-position = Vector2(40, -64)
+position = Vector2(1, -69)
 
 [node name="Point7" type="Node2D" parent="Spawner"]
-position = Vector2(100, -64)
+position = Vector2(-5, 58)
 
 [node name="Point8" type="Node2D" parent="Spawner"]
 position = Vector2(-109, -93)
 
 [node name="Point9" type="Node2D" parent="Spawner"]
-position = Vector2(-53, -99)
+position = Vector2(-54, -95)
+
+[node name="Point12" type="Node2D" parent="Spawner"]
+position = Vector2(0, -128)
+
+[node name="Point15" type="Node2D" parent="Spawner"]
+position = Vector2(0, -15)
+
+[node name="Point13" type="Node2D" parent="Spawner"]
+position = Vector2(54, -96)
+
+[node name="Point14" type="Node2D" parent="Spawner"]
+position = Vector2(101, -95)
 
 [node name="Point10" type="Node2D" parent="Spawner"]
-position = Vector2(-167, -17)
+position = Vector2(-141, -32)
 
 [node name="Point11" type="Node2D" parent="Spawner"]
-position = Vector2(161, -4)
+position = Vector2(134, -30)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

@@ -22,6 +22,8 @@ func count() -> int:
 
 
 func do_spawn():
+	if count() >= max_amount:
+		return
 	var i := randi_range(0, points.size() - 1)
 	var pos := points[i].global_position
 	for obj in _objects:
@@ -36,6 +38,6 @@ func do_spawn():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	_timer -= delta
-	if _timer <= 0.0 and count() < max_amount:
+	if _timer <= 0.0:
 		do_spawn()
 		_timer += spawn_time
