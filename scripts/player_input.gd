@@ -22,4 +22,5 @@ func _process(delta: float) -> void:
 	bubble = Input.is_action_just_pressed(get_button_name("bubble"))
 	jump = Input.is_action_just_pressed(get_button_name("jump"))
 	shoot = Input.is_action_just_pressed(get_button_name("shoot"))
+	shoot_up = Input.is_action_just_pressed(get_button_name("shoot_up"))
 	horizontal_input = Input.get_axis(get_button_name("left"), get_button_name("right"))

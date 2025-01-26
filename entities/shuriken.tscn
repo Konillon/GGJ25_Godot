@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bot484ykv8ra8"]
+
+[ext_resource type="Script" path="res://scripts/guns/shuriken.gd" id="1_nwant"]
+[ext_resource type="Texture2D" uid="uid://dknvamsmiaovr" path="res://sprites/chupeta.png" id="2_hd1nr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l84im"]
+radius = 6.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_nwant")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l84im")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hd1nr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

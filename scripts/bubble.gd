@@ -21,7 +21,7 @@ func _exit_tree() -> void:
 func _physics_process(delta: float) -> void:
 	_timer -= delta
 	if _timer <= 0.0:
-		queue_free()
+		destroy_bubble()
 		return
 	
 	_velocity.x = move_toward(_velocity.x, 0.0, delta * 400.0)
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if abs(_velocity.x) < 0.2 or _player:
 		if body.global_position.y > global_position.y:
-			queue_free()
+			destroy_bubble()
 		else: # jump
 			var p := body as PlayerMovement
 			if p:
@@ -46,7 +46,10 @@ func _on_body_entered(body: Node2D) -> void:
 		if _velocity.dot(body.global_position - global_position) < 0.0:
 			return
 		
-		var stats := body.find_child("Stats")
-		if stats and stats is PlayerStats:
-			_player = stats as PlayerStats
-			_player.is_in_bubble = true
+	var stats := body.find_child("Stats")
+	if stats and stats is PlayerStats:
+		_player = stats as PlayerStats
+		_player.is_in_bubble = true
+		
+func destroy_bubble() -> void:
+	queue_free()
