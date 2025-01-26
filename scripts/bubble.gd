@@ -3,7 +3,7 @@ class_name Bubble
 
 
 var _player : PlayerStats = null
-var _timer : float = 7.0
+var _timer : float = 5.0
 var _velocity : Vector2
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		return
 	
-	_velocity.x = move_toward(_velocity.x, 0.0, delta * 300.0)
+	_velocity.x = move_toward(_velocity.x, 0.0, delta * 400.0)
 	_velocity.y -= delta * 15.0
 	global_position += _velocity * delta
 	
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if abs(_velocity.x) < 0.2:
+	if abs(_velocity.x) < 0.2 or _player:
 		if body.global_position.y > global_position.y:
 			queue_free()
 		else: # jump
@@ -42,7 +42,7 @@ func _on_body_entered(body: Node2D) -> void:
 			if p:
 				p.velocity.y = -300 # TODO: ajustar pulo
 			queue_free()
-	elif not _player:
+	else:
 		if _velocity.dot(body.global_position - global_position) < 0.0:
 			return
 		

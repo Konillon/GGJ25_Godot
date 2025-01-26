@@ -18,7 +18,7 @@ func _ready() -> void:
 	_input = get_parent().find_child("Input")
 
 
-func _setup_bullet(new_bullet : Node2D) -> void:
+func _setup_bullet(_new_bullet : Node2D) -> void:
 	pass
 
 
