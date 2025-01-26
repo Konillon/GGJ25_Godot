@@ -2,6 +2,7 @@ extends Node
 
 
 var soap_counts : Array[int]
+signal on_update_soaps(team: int, new_count: int)
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func add_soap(team: int) -> void:
 		return
 	
 	soap_counts[team] += 1
+	on_update_soaps.emit(team, soap_counts[team])
 
 
 func take_soaps(team: int, amount: int):
@@ -31,3 +33,4 @@ func take_soaps(team: int, amount: int):
 	
 	soap_counts[team] -= amount
 	soap_counts[team] = max(soap_counts[team], 0)
+	on_update_soaps.emit(team, soap_counts[team])

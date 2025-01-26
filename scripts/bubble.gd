@@ -35,13 +35,14 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if abs(_velocity.x) < 0.2 or _player:
-		if body.global_position.y > global_position.y + 20:
-			destroy_bubble()
-		else: # jump
-			var p := body as PlayerMovement
-			if p:
-				p.velocity.y = -300 # TODO: ajustar pulo
-			destroy_bubble()
+		if body is PlayerMovement:
+			if body.global_position.y > global_position.y + 20:
+				destroy_bubble()
+			else: # jump
+				var p := body as PlayerMovement
+				if p:
+					p.velocity.y = -300 # TODO: ajustar pulo
+				destroy_bubble()
 	else:
 		if _velocity.dot(body.global_position - global_position) < 0.0:
 			return
