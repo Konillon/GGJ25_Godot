@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if abs(_velocity.x) < 0.2 or _player:
-		if body.global_position.y > global_position.y:
+		if body.global_position.y > global_position.y + 20:
 			destroy_bubble()
 		else: # jump
 			var p := body as PlayerMovement
@@ -46,10 +46,11 @@ func _on_body_entered(body: Node2D) -> void:
 		if _velocity.dot(body.global_position - global_position) < 0.0:
 			return
 		
-	var stats := body.find_child("Stats")
-	if stats and stats is PlayerStats:
-		_player = stats as PlayerStats
-		_player.is_in_bubble = true
-		
+		var stats := body.find_child("Stats")
+		if stats and not stats.is_in_bubble and stats is PlayerStats:
+			_player = stats as PlayerStats
+			_player.is_in_bubble = true
+
+
 func destroy_bubble() -> void:
 	queue_free()

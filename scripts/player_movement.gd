@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name PlayerMovement
 
+
 const SPEED = 150.0
-const JUMP_VELOCITY = -200.0
+const JUMP_VELOCITY = -300.0
 
 
 var _stats : PlayerStats
