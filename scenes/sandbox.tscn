@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bu6cunuopjs0"]
+[gd_scene load_steps=17 format=4 uid="uid://bu6cunuopjs0"]
 
 [ext_resource type="Texture2D" uid="uid://8qfr7rfn1x7i" path="res://sprites/castle.png" id="1_4iqt7"]
 [ext_resource type="PackedScene" uid="uid://dmm8xtc73ofyj" path="res://entities/player.tscn" id="1_hn8qa"]
@@ -8,10 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://dx18sealm2pwy" path="res://entities/button.tscn" id="4_v7owa"]
 [ext_resource type="PackedScene" uid="uid://blw4tsbobhdcj" path="res://entities/soap.tscn" id="5_jrek0"]
 [ext_resource type="TileSet" uid="uid://w73srp740ydj" path="res://mini_tiles.tres" id="5_ny5dr"]
+[ext_resource type="Texture2D" uid="uid://cfrsw1atngyg" path="res://sprites/castle_platform_mask.png" id="5_oj8no"]
 [ext_resource type="TileSet" uid="uid://bg4imhqttpbp8" path="res://tiles.tres" id="6_70f06"]
 [ext_resource type="AudioStream" uid="uid://tscof6otxisl" path="res://music/main_theme.mp3" id="9_60svy"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="11_danc5"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="11_ev66p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb3s8"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1py8"]
+size = Vector2(128, 28)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kw2x0"]
 font_size = 32
@@ -36,12 +43,227 @@ position = Vector2(249.82, 8.525)
 texture = ExtResource("1_4iqt7")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Castle2"]
-position = Vector2(-50, -64.5)
+position = Vector2(-48, -78.5)
 texture = ExtResource("2_y7gdt")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Castle2"]
-position = Vector2(-48, 33.5)
+position = Vector2(-48, 5.5)
 texture = ExtResource("3_mluqk")
+
+[node name="Doors" type="Node2D" parent="Castle2"]
+
+[node name="Sprite2D4" type="Sprite2D" parent="Castle2/Doors"]
+modulate = Color(0.247059, 0.247059, 0.454902, 1)
+position = Vector2(-50, 93)
+texture = ExtResource("5_oj8no")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Castle2/Doors"]
+modulate = Color(0.541176, 0.435294, 0.188235, 1)
+position = Vector2(-50, 79)
+texture = ExtResource("5_oj8no")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Castle2/Doors"]
+modulate = Color(0.67451, 0.196078, 0.196078, 1)
+position = Vector2(-50, 65)
+texture = ExtResource("5_oj8no")
+
+[node name="Platforms" type="Node2D" parent="Castle2"]
+
+[node name="P0" type="Node2D" parent="Castle2/Platforms"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D2"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D3"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P0"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P0/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P0/StaticBody2D4"]
+modulate = Color(0.85098, 0.341176, 0.388235, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="P1" type="Node2D" parent="Castle2/Platforms"]
+position = Vector2(-30, -42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D2"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D3"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P1"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P1/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P1/StaticBody2D4"]
+modulate = Color(0.356863, 0.431373, 0.882353, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="P2" type="Node2D" parent="Castle2/Platforms"]
+position = Vector2(0, -84)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D2"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D3"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P2"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P2/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P2/StaticBody2D4"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="P3" type="Node2D" parent="Castle2/Platforms"]
+position = Vector2(-30, -126)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(36, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(22, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D2"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(8, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D3"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Castle2/Platforms/P3"]
+position = Vector2(-6, 65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Platforms/P3/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_sb3s8")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2/Platforms/P3/StaticBody2D4"]
+modulate = Color(0.984314, 0.94902, 0.211765, 1)
+texture = ExtResource("5_oj8no")
+
+[node name="Collision" type="Node2D" parent="Castle2"]
+position = Vector2(15.18, 65.475)
+
+[node name="Main" type="StaticBody2D" parent="Castle2/Collision"]
+position = Vector2(-15, 48.115)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle2/Collision/Main"]
+shape = SubResource("RectangleShape2D_d1py8")
 
 [node name="Platforms" type="TileMapLayer" parent="."]
 position = Vector2(0, 15.74)
