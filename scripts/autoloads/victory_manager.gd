@@ -1,6 +1,6 @@
 extends Node
 
-@onready var _scene_to_load : String = "res://scenes/sandbox.tscn"
+@onready var _scene_to_load : String = "res://scenes/menu.tscn"
 
 signal on_victory(team: int)
 var _won : bool = false

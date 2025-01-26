@@ -59,7 +59,7 @@ tile_map_data = PackedByteArray("AAD6/wQAAQAAAAIAAAD5/wQAAQAAAAIAAAD4/wQAAQAAAAI
 tile_set = ExtResource("6_70f06")
 
 [node name="Castle2" type="Node2D" parent="."]
-position = Vector2(249.82, 8.525)
+position = Vector2(230, 8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Castle2"]
 texture = ExtResource("1_4iqt7")
@@ -326,7 +326,7 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_bwn4a")
 
 [node name="Castle3" type="Node2D" parent="."]
-position = Vector2(-230, 8.525)
+position = Vector2(-230, 8)
 
 [node name="Sprite2D" type="Sprite2D" parent="Castle3"]
 texture = ExtResource("1_4iqt7")
@@ -607,26 +607,22 @@ tile_map_data = PackedByteArray("AAD3/wQAAgAAAAAAAAD4/wQAAgAAAAAAAAD5/wQAAgAAAAA
 tile_set = ExtResource("6_70f06")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_hn8qa")]
-position = Vector2(-170, 130)
+position = Vector2(-150, 130)
 
 [node name="AnimatedSprite2D" parent="CharacterBody2D" index="3"]
 animation = &"idle"
 
-[node name="Input" parent="CharacterBody2D" index="4"]
-joy = false
-
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_hn8qa")]
-position = Vector2(-150, 130)
+position = Vector2(-130, 130)
 
 [node name="Input" parent="CharacterBody2D2" index="4"]
-joy = false
 id = 1
 
 [node name="Sprite2D" parent="CharacterBody2D2" index="7"]
 region_rect = Rect2(9, 0, 9, 13)
 
 [node name="CharacterBody2D3" parent="." instance=ExtResource("1_hn8qa")]
-position = Vector2(170, 130)
+position = Vector2(130, 130)
 
 [node name="Stats" parent="CharacterBody2D3" index="1"]
 team = 1
@@ -634,6 +630,9 @@ team = 1
 [node name="AnimatedSprite2D" parent="CharacterBody2D3" index="3"]
 animation = &"idle"
 frame_progress = 0.394244
+
+[node name="Input" parent="CharacterBody2D3" index="4"]
+id = 2
 
 [node name="Sprite2D" parent="CharacterBody2D3" index="7"]
 region_rect = Rect2(18, 0, 9, 13)
@@ -645,7 +644,7 @@ position = Vector2(150, 130)
 team = 1
 
 [node name="Input" parent="CharacterBody2D4" index="4"]
-id = 1
+id = 3
 
 [node name="Sprite2D" parent="CharacterBody2D4" index="7"]
 region_rect = Rect2(27, 0, 9, 13)
