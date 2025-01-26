@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _player:
 		global_position.x = (_player.get_parent() as Node2D).global_position.x
-		(_player.get_parent() as Node2D).global_position = global_position
+		(_player.get_parent() as Node2D).global_position = global_position - Vector2.UP * 15.0
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -41,7 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 			var p := body as PlayerMovement
 			if p:
 				p.velocity.y = -300 # TODO: ajustar pulo
-			queue_free()
+			destroy_bubble()
 	else:
 		if _velocity.dot(body.global_position - global_position) < 0.0:
 			return

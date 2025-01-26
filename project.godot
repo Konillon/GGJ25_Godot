@@ -15,9 +15,16 @@ run/main_scene="res://scenes/sandbox.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoapManager="*res://scripts/autoloads/soap_manager.gd"
+
 [display]
 
 window/size/mode=3
+window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [dotnet]
 
