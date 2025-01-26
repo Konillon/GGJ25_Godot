@@ -22,17 +22,22 @@ joy = false
 [node name="CharacterBody2D2" parent="." instance=ExtResource("1_hn8qa")]
 position = Vector2(-180, 130)
 
+[node name="Input" parent="CharacterBody2D2" index="4"]
+joy = false
+id = 1
+
 [node name="CharacterBody2D3" parent="." instance=ExtResource("1_hn8qa")]
 position = Vector2(200, 130)
 
-[node name="Input" parent="CharacterBody2D3" index="4"]
-id = 1
+[node name="AnimatedSprite2D" parent="CharacterBody2D3" index="3"]
+animation = &"idle"
+frame_progress = 0.394244
 
 [node name="CharacterBody2D4" parent="." instance=ExtResource("1_hn8qa")]
 position = Vector2(180, 130)
 
 [node name="Input" parent="CharacterBody2D4" index="4"]
-id = 2
+id = 1
 
 [editable path="CharacterBody2D"]
 [editable path="CharacterBody2D2"]

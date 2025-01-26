@@ -139,8 +139,7 @@ bullet = ExtResource("5_vwkog")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_jeca5")
-animation = &"walking"
-frame_progress = 0.461728
+animation = &"inside_bubble"
 script = ExtResource("6_50mtj")
 
 [node name="Input" type="Node" parent="."]

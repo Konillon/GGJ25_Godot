@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _player:
 		global_position.x = (_player.get_parent() as Node2D).global_position.x
-		(_player.get_parent() as Node2D).global_position = global_position - Vector2.UP * 15.0
+		(_player.get_parent() as Node2D).global_position = global_position - Vector2.UP * 12.0
 
 
 func _on_body_entered(body: Node2D) -> void:
