@@ -17,6 +17,9 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Bubble:
 		(area as Bubble).destroy_bubble()
 		queue_free()
+	elif area is MegaBubble:
+		area.queue_free()
+		queue_free()
 
 func _launch(force : Vector2) -> void:
 	_velocity = force
