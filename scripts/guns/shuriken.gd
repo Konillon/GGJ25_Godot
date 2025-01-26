@@ -1,10 +1,13 @@
 extends Area2D
 class_name Shuriken
-
+const _timeToRotate = 0.1
 var _timer : float = 0.8
 var _velocity : Vector2
+var _sprite : Sprite2D
+var _rotateTimer : float = 0.1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_sprite = find_child("Sprite2D")
 	pass # Replace with function body.
 
 
@@ -25,6 +28,10 @@ func _launch(force : Vector2) -> void:
 	_velocity = force
 	
 func _physics_process(delta: float) -> void:
+	_rotateTimer -= delta
+	if(_rotateTimer <=0.0):
+		_sprite.rotation_degrees += 90
+		_rotateTimer = _timeToRotate
 	_timer -= delta
 	if _timer <= 0.0:
 		queue_free()
