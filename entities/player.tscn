@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dmm8xtc73ofyj"]
+[gd_scene load_steps=25 format=3 uid="uid://dmm8xtc73ofyj"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_0pder"]
 [ext_resource type="Script" path="res://scripts/player_stats.gd" id="3_207jx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/player_input.gd" id="6_n0hsq"]
 [ext_resource type="Script" path="res://scripts/guns/player_gun_shuriken.gd" id="7_jyc7h"]
 [ext_resource type="PackedScene" uid="uid://bot484ykv8ra8" path="res://entities/shuriken.tscn" id="8_awshp"]
+[ext_resource type="Script" path="res://scripts/soap_collector.gd" id="10_8ngol"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oaq54"]
 radius = 7.0
@@ -119,6 +120,10 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xrhtr"]
+radius = 6.0
+height = 22.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_0pder")
@@ -151,3 +156,12 @@ script = ExtResource("7_jyc7h")
 offset_up = Vector2(0, -35)
 offset = Vector2(10, -15)
 bullet = ExtResource("8_awshp")
+
+[node name="SoapCollector" type="Area2D" parent="."]
+script = ExtResource("10_8ngol")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoapCollector"]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_xrhtr")
+
+[connection signal="area_entered" from="SoapCollector" to="SoapCollector" method="_on_area_entered"]
