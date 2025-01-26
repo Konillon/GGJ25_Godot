@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmm8xtc73ofyj"]
+[gd_scene load_steps=20 format=3 uid="uid://dmm8xtc73ofyj"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_0pder"]
 [ext_resource type="Script" path="res://scripts/player_stats.gd" id="3_207jx"]
 [ext_resource type="Script" path="res://scripts/guns/player_gun_bubble.gd" id="4_tw20x"]
 [ext_resource type="Texture2D" uid="uid://c324hnaovi1sw" path="res://sprites/baby_00.png" id="5_mpynr"]
 [ext_resource type="PackedScene" uid="uid://b1x2yy6av4aih" path="res://entities/bubble.tscn" id="5_vwkog"]
+[ext_resource type="Script" path="res://scripts/player_input.gd" id="6_n0hsq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oaq54"]
 radius = 7.0
@@ -127,7 +128,7 @@ script = ExtResource("3_207jx")
 
 [node name="BubbleGun" type="Node2D" parent="."]
 script = ExtResource("4_tw20x")
-offset = Vector2(60, 0)
+offset = Vector2(10, -15)
 action = "bubble"
 bullet = ExtResource("5_vwkog")
 
@@ -136,3 +137,7 @@ position = Vector2(0, -14.5)
 sprite_frames = SubResource("SpriteFrames_jeca5")
 animation = &"walking"
 frame_progress = 0.461728
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("6_n0hsq")
+joy = true
