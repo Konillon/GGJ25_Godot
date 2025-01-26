@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmm8xtc73ofyj"]
+[gd_scene load_steps=19 format=3 uid="uid://dmm8xtc73ofyj"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_0pder"]
 [ext_resource type="Script" path="res://scripts/player_stats.gd" id="3_207jx"]
@@ -15,6 +15,7 @@
 [ext_resource type="SpriteFrames" uid="uid://crp543h407jbg" path="res://entities/animations/baby_04.tres" id="10_3bhkt"]
 [ext_resource type="Script" path="res://scripts/soap_collector.gd" id="10_8ngol"]
 [ext_resource type="SpriteFrames" uid="uid://dbisf2njqtbct" path="res://entities/animations/baby_05.tres" id="11_30l7m"]
+[ext_resource type="Texture2D" uid="uid://du2jb8ie01j8o" path="res://sprites/icon.png" id="16_vru6p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oaq54"]
 radius = 7.0
@@ -64,5 +65,11 @@ script = ExtResource("10_8ngol")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoapCollector"]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_xrhtr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, -35)
+texture = ExtResource("16_vru6p")
+region_enabled = true
+region_rect = Rect2(0, 0, 9, 13)
 
 [connection signal="area_entered" from="SoapCollector" to="SoapCollector" method="_on_area_entered"]

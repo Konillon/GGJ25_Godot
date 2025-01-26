@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bu6cunuopjs0"]
+[gd_scene load_steps=28 format=4 uid="uid://bu6cunuopjs0"]
 
 [ext_resource type="Texture2D" uid="uid://8qfr7rfn1x7i" path="res://sprites/castle.png" id="1_4iqt7"]
 [ext_resource type="PackedScene" uid="uid://dmm8xtc73ofyj" path="res://entities/player.tscn" id="1_hn8qa"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c11f38h14awp6" path="res://entities/mega_bubble_strong.tscn" id="7_uj5v0"]
 [ext_resource type="AudioStream" uid="uid://tscof6otxisl" path="res://music/main_theme.mp3" id="9_60svy"]
 [ext_resource type="Script" path="res://scripts/loss_detector.gd" id="9_xsr4i"]
+[ext_resource type="Texture2D" uid="uid://bg613lyblkx2o" path="res://sprites/botao_azul.png" id="10_5xeju"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="11_danc5"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="11_ev66p"]
 [ext_resource type="FontFile" uid="uid://c8smb5las07pj" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="15_386d7"]
@@ -325,7 +326,7 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_bwn4a")
 
 [node name="Castle3" type="Node2D" parent="."]
-position = Vector2(-238.18, 8.525)
+position = Vector2(-230, 8.525)
 
 [node name="Sprite2D" type="Sprite2D" parent="Castle3"]
 texture = ExtResource("1_4iqt7")
@@ -343,6 +344,9 @@ flip_h = true
 [node name="ButtonStrong" parent="Castle3" instance=ExtResource("4_v7owa")]
 position = Vector2(27, 15)
 
+[node name="Sprite2D" parent="Castle3/ButtonStrong" index="0"]
+texture = ExtResource("10_5xeju")
+
 [node name="CannonStrong" parent="Castle3" instance=ExtResource("3_wi7wo")]
 position = Vector2(64, 7)
 cost = 5
@@ -351,6 +355,9 @@ launch_velocity = 10.0
 
 [node name="ButtonWeak" parent="Castle3" instance=ExtResource("4_v7owa")]
 position = Vector2(27, -69)
+
+[node name="Sprite2D" parent="Castle3/ButtonWeak" index="0"]
+texture = ExtResource("10_5xeju")
 
 [node name="CannonWeak" parent="Castle3" instance=ExtResource("3_wi7wo")]
 position = Vector2(53, -76)
@@ -591,12 +598,12 @@ shape = SubResource("RectangleShape2D_bwn4a")
 
 [node name="Platforms" type="TileMapLayer" parent="."]
 position = Vector2(0, 15.74)
-tile_map_data = PackedByteArray("AAD4/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAIAAIAAAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAD4//r/AAAAAAAAAAD5//r/AAAAAAAAAAD6//r/AAAAAAAAAAD7//r/AAAAAAAAAAD8//r/AAAAAAAAAAD9//r/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD4/wQAAgAAAAAAAAD5/wQAAwAAAAAAAAD6/wQAAwABAAAAAAD7/wQAAwAAAAAAAAD8/wQAAQABAAAAAAADAAIAAgAAAAAAAAAEAAIAAwAAAAAAAAAFAAIAAwABAAAAAAAGAAIAAwAAAAAAAAAHAAIAAwABAAAAAAAIAAIAAQABAAAAAAACAPz/AgAAAAAAAAADAPz/AwAAAAAAAAAEAPz/AwABAAAAAAAFAPz/AwAAAAAAAAAGAPz/AQABAAAAAAD4//r/AgAAAAAAAAD5//r/AwAAAAAAAAD6//r/AwABAAAAAAD7//r/AwABAAAAAAD8//r/AwABAAAAAAD9//r/AQABAAAAAAA=")
 tile_set = ExtResource("5_ny5dr")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 7.87)
-tile_map_data = PackedByteArray("AAD3/wQAAAAAAAAAAAD4/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAD2/wQAAAAAAAAAAAD1/wQAAAAAAAAAAAD0/wQAAAAAAAAAAADz/wQAAAAAAAAAAADy/wQAAAAAAAAAAADx/wQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAAAAAAAAAAAAAAPAP//AAAAAAAAAAAPAP7/AAAAAAAAAAAPAP3/AAAAAAAAAAAPAPz/AAAAAAAAAAAPAPv/AAAAAAAAAAAPAPr/AAAAAAAAAADx/wMAAAAAAAAAAADx/wIAAAAAAAAAAADx/wEAAAAAAAAAAADx/wAAAAAAAAAAAADx////AAAAAAAAAADx//7/AAAAAAAAAADx//3/AAAAAAAAAADx//z/AAAAAAAAAADx//v/AAAAAAAAAADx//r/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD3/wQAAgAAAAAAAAD4/wQAAgAAAAAAAAD5/wQAAgAAAAAAAAD6/wQAAgAAAAAAAAD7/wQAAgAAAAAAAAD8/wQAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAD2/wQAAgAAAAAAAAD1/wQAAgAAAAAAAAD0/wQAAgAAAAAAAADz/wQAAgAAAAAAAADy/wQAAgAAAAAAAADx/wQAAAAAAAAAAAAKAAQAAgAAAAAAAAALAAQAAgAAAAAAAAAMAAQAAgAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAEAAAAAAAAAAAAPAAAAAAAAAAAAAAAPAP//AAAAAAAAAAAPAP7/AAAAAAAAAAAPAP3/AAAAAAAAAAAPAPz/AAAAAAAAAAAPAPv/AAAAAAAAAAAPAPr/AAAAAAAAAADx/wMAAAAAAAAAAADx/wIAAAAAAAAAAADx/wEAAAAAAAAAAADx/wAAAAAAAAAAAADx////AAAAAAAAAADx//7/AAAAAAAAAADx//3/AAAAAAAAAADx//z/AAAAAAAAAADx//v/AAAAAAAAAADx//r/AAAAAAAAAAA=")
 tile_set = ExtResource("6_70f06")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_hn8qa")]
@@ -615,6 +622,9 @@ position = Vector2(-150, 130)
 joy = false
 id = 1
 
+[node name="Sprite2D" parent="CharacterBody2D2" index="7"]
+region_rect = Rect2(9, 0, 9, 13)
+
 [node name="CharacterBody2D3" parent="." instance=ExtResource("1_hn8qa")]
 position = Vector2(170, 130)
 
@@ -625,6 +635,9 @@ team = 1
 animation = &"idle"
 frame_progress = 0.394244
 
+[node name="Sprite2D" parent="CharacterBody2D3" index="7"]
+region_rect = Rect2(18, 0, 9, 13)
+
 [node name="CharacterBody2D4" parent="." instance=ExtResource("1_hn8qa")]
 position = Vector2(150, 130)
 
@@ -633,6 +646,9 @@ team = 1
 
 [node name="Input" parent="CharacterBody2D4" index="4"]
 id = 1
+
+[node name="Sprite2D" parent="CharacterBody2D4" index="7"]
+region_rect = Rect2(27, 0, 9, 13)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_60svy")
@@ -695,7 +711,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = -288.0
 offset_top = 112.0
-offset_right = -188.0
+offset_right = -238.0
 offset_bottom = 162.0
 grow_vertical = 0
 text = "0"
@@ -711,7 +727,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 188.0
+offset_left = 238.0
 offset_top = 112.0
 offset_right = 288.0
 offset_bottom = 162.0
@@ -745,6 +761,7 @@ vertical_alignment = 1
 script = ExtResource("16_lkynq")
 
 [node name="Victory1" type="Label" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -771,6 +788,8 @@ team = 1
 [connection signal="on_pressed" from="Castle3/ButtonWeak" to="Castle3/CannonWeak" method="activate"]
 [connection signal="area_entered" from="Castle3/Area2D" to="Castle3/Area2D" method="_on_area_entered"]
 
+[editable path="Castle3/ButtonStrong"]
+[editable path="Castle3/ButtonWeak"]
 [editable path="CharacterBody2D"]
 [editable path="CharacterBody2D2"]
 [editable path="CharacterBody2D3"]
