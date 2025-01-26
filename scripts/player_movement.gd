@@ -13,6 +13,9 @@ var _anim : AnimatedSprite2D
 var _stun_timer : float = 0.0
 var _last_vel : float = 0.0
 
+var _coyote = 0.0
+var _buffer = 0.0
+
 func _ready() -> void:
 	_stats = find_child("Stats")
 	_input = find_child("Input")
@@ -28,6 +31,16 @@ func _get_horizontal_velocity() -> float:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		_coyote -= delta
+	else:
+		_coyote = 0.15
+		
+	if _input.jump:
+		_buffer = 0.1
+	else:
+		_buffer -= delta
+	
 	_stun_timer -= delta
 	if _stun_timer < 0.0:
 		_stats.is_stunned = false;
@@ -41,8 +54,9 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# Handle jump.
-	if _input.jump and is_on_floor() and not _stats.is_stunned:
+	if _buffer > 0.0 and _coyote > 0.0 and velocity.y >= 0.0 and not _stats.is_stunned:
 		velocity.y = JUMP_VELOCITY
+		_buffer = 0.0
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
