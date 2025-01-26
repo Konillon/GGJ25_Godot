@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bp3hlesra3r3"
+path="res://.godot/imported/Cheerful Annoyance.ogg-20a5f28f67acc6f7687fb09f8caad1f4.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/Cheerful Annoyance.ogg"
+dest_files=["res://.godot/imported/Cheerful Annoyance.ogg-20a5f28f67acc6f7687fb09f8caad1f4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
