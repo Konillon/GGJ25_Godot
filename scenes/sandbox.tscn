@@ -1,12 +1,35 @@
-[gd_scene load_steps=6 format=4 uid="uid://bu6cunuopjs0"]
+[gd_scene load_steps=9 format=4 uid="uid://bu6cunuopjs0"]
 
+[ext_resource type="Texture2D" uid="uid://8qfr7rfn1x7i" path="res://sprites/castle.png" id="1_4iqt7"]
 [ext_resource type="PackedScene" uid="uid://dmm8xtc73ofyj" path="res://entities/player.tscn" id="1_hn8qa"]
-[ext_resource type="PackedScene" path="res://entities/cannon_weak.tscn" id="3_wi7wo"]
-[ext_resource type="PackedScene" path="res://entities/button.tscn" id="4_v7owa"]
-[ext_resource type="PackedScene" uid="uid://blw4tsbobhdcj" path="res://entities/soap.tscn" id="5_jrek0"]
+[ext_resource type="Texture2D" uid="uid://b1lc21j717ssn" path="res://sprites/window_small.png" id="2_y7gdt"]
+[ext_resource type="Texture2D" uid="uid://858aa7gnye05" path="res://sprites/window_big.png" id="3_mluqk"]
+[ext_resource type="PackedScene" uid="uid://beiwt1kylcpv" path="res://entities/cannon_weak.tscn" id="3_wi7wo"]
+[ext_resource type="PackedScene" uid="uid://dx18sealm2pwy" path="res://entities/button.tscn" id="4_v7owa"]
+[ext_resource type="PackedScene" path="res://entities/soap.tscn" id="5_jrek0"]
 [ext_resource type="TileSet" uid="uid://bg4imhqttpbp8" path="res://tiles.tres" id="6_70f06"]
 
 [node name="Sandbox" type="Node2D"]
+
+[node name="Castle" type="Node2D" parent="."]
+position = Vector2(-249.82, 8.525)
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle"]
+texture = ExtResource("1_4iqt7")
+
+[node name="Castle2" type="Node2D" parent="."]
+position = Vector2(249.82, 8.525)
+
+[node name="Sprite2D" type="Sprite2D" parent="Castle2"]
+texture = ExtResource("1_4iqt7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Castle2"]
+position = Vector2(-50, -64.5)
+texture = ExtResource("2_y7gdt")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Castle2"]
+position = Vector2(-48, 33.5)
+texture = ExtResource("3_mluqk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
